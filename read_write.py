@@ -9,7 +9,6 @@ def write_to_file(address):
     rename_directory_history = open("/home/pratik/PycharmProjects/renameGUI/directoryHistory.txt")
     lines = rename_directory_history.read().splitlines()
     if address in lines:
-        print('Old address')
         rename_directory_history.close()
         return
     else:

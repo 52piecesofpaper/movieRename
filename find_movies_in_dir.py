@@ -1,5 +1,7 @@
 import fnmatch
 import os
+from tkinter import messagebox
+
 import pass_names_from_list
 
 
@@ -18,7 +20,7 @@ def find_movies_in_dir(search_directory):  # search_directory is a string
                 movie_files.append(file)
                 break
     if not movie_files:
-        print('There are no movie files in this directory')
+        messagebox.showwarning("Nothing found", "No Movie files found in this directory")
     else:
         pass_names_from_list.pass_names_from_list(movie_files)
 # input_search_directory = '/home/pratik/Downloads'
