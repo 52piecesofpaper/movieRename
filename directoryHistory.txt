@@ -1,0 +1,4 @@
+/home/pratik/Downloads
+/media/pratik/DATA/Movies
+/home/pratik
+/media/pratik/DATA
