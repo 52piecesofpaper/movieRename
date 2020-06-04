@@ -3,7 +3,9 @@ import single_movie_rename
 
 
 def pass_names_from_list(movie_file_list):
+    renamed = 0
     print('Movies in directory: ')
     for movie_file in movie_file_list:
         print(movie_file)
-        single_movie_rename.single_movie_rename(movie_file)
+        renamed = renamed + single_movie_rename.single_movie_rename(movie_file)
+    return renamed

@@ -21,8 +21,7 @@ root.iconphoto(True, img)
 
 
 # Functions
-def okay_button_click():
-    search_directory = str(entry.get())
+def okay_button_click(search_directory):
     if os.path.exists(search_directory):
         os.chdir(search_directory)
         find_movies_in_dir.find_movies_in_dir(search_directory)
@@ -40,8 +39,9 @@ def explore():
     # read_write.write_to_file(str(dir_name))
 
 
-def drop_down_directory():
-    find_movies_in_dir.find_movies_in_dir(str(clicked.get()))
+# def drop_down_okay():
+#     search_directory = str(clicked.get())
+#     find_movies_in_dir.find_movies_in_dir(search_directory)
 
 
 # def update_drop_down():
@@ -74,7 +74,7 @@ entry = Entry(frame, width=65, borderwidth=2)
 entry.grid(row=1, column=0, columnspan=1)
 
 # okay button
-okay_button = Button(frame, text="OK", command=okay_button_click, anchor='e', bg='#adffdd')
+okay_button = Button(frame, text="OK", command=lambda: okay_button_click(str(entry.get())), anchor='e', bg='#adffdd')
 okay_button.grid(row=1, column=1, sticky='e', padx=10)
 
 # Explore button
@@ -100,7 +100,8 @@ drop["menu"].config(bg='#adffdd')
 drop.grid(row=1, column=1, columnspan=1)
 
 # second okay button
-history_okay_button = Button(frame2, text="OK", command=drop_down_directory, anchor='e', bg='#adffdd')
+history_okay_button = Button(frame2, text="OK", command=lambda: okay_button_click(str(clicked.get())),
+                             anchor='e', bg='#adffdd')
 history_okay_button.grid(row=1, column=2, sticky='e', padx=10)
 
 # root.filename = filedialog.askopenfilename(initialdir='~/Downloads', title='Select a file', filetypes=(("png

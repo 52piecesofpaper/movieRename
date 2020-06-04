@@ -22,6 +22,7 @@ def find_movies_in_dir(search_directory):  # search_directory is a string
     if not movie_files:
         messagebox.showwarning("Nothing found", "No Movie files found in this directory")
     else:
-        pass_names_from_list.pass_names_from_list(movie_files)
+        renamed = pass_names_from_list.pass_names_from_list(movie_files)
+        messagebox.showinfo("Done", f"{renamed} files renamed")
 # input_search_directory = '/home/pratik/Downloads'
 # find_movies_in_dir(input_search_directory)

@@ -33,12 +33,12 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
         'SUBS'
     )
     # getting individual words of a movie file based on spaces
-    input_movie_name_words_list = re.split('[();\-\\[\\].+\s]\s*', input_movie_name)
+    input_movie_name_words_list = re.split('[\(\);\-\\[\\].+\s]\s*', input_movie_name)
     input_movie_name_words_list = list(filter(None, input_movie_name_words_list))
     extension = input_movie_name_words_list[-1]
     input_movie_name_words_list.pop()
     initial_bad_word_flag = 0
-    # print(input_movie_name_words_list)  # to check for proper splitting
+    print(input_movie_name_words_list)  # to check for proper splitting
     for word in input_movie_name_words_list:
         if word.upper() in bad_words:
             print('bad word found!')
@@ -46,9 +46,9 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
             break
     if initial_bad_word_flag == 0:
         if input_movie_name_words_list[-1] in years:
-            return
+            return 0
         if input_movie_name_words_list[-1] in qualities:
-            return
+            return 0
 
     for year in years:
         f = 0
@@ -91,9 +91,12 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
         input_movie_name_words_list.append(f'({quality})')
     final_movie_name = ' '.join(input_movie_name_words_list)
     final_movie_name = final_movie_name + "." + extension
+
     subprocess.Popen(['mv', input_movie_name, final_movie_name])
+    return 1
 
     # print(final_movie_name)
 
-# input_movie = "n"
+
+# input_movie = "Spider-Man.Far.from.Home.brip.2028.Spiderman-.1080p.BluRay.x264-MkvCag.mkv"
 # single_movie_rename(input_movie)
