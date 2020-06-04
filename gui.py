@@ -91,6 +91,9 @@ select_from_these.grid(row=1, column=0, sticky='w')
 
 # drop down menu
 history = read_write.read_files()
+if len(history) == 0:
+    read_write.write_to_file('/home/')
+    history = read_write.read_files()
 history.reverse()
 clicked = StringVar()
 clicked.set(history[0])

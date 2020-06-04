@@ -32,23 +32,31 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
         'NL',
         'SUBS'
     )
+
     # getting individual words of a movie file based on spaces
-    input_movie_name_words_list = re.split('[\(\);\-\\[\\].+\s]\s*', input_movie_name)
+    input_movie_name_words_list = re.split('[();\-\\[\\].+\s]\s*', input_movie_name)
     input_movie_name_words_list = list(filter(None, input_movie_name_words_list))
     extension = input_movie_name_words_list[-1]
     input_movie_name_words_list.pop()
+
+    input_movie_name_words_list_comp = re.split('[()\s]\s*', input_movie_name)
+    input_movie_name_words_list_comp = list(filter(None, input_movie_name_words_list_comp))
+    input_movie_name_words_list_comp.pop()
+
     initial_bad_word_flag = 0
-    print(input_movie_name_words_list)  # to check for proper splitting
-    for word in input_movie_name_words_list:
-        if word.upper() in bad_words:
-            print('bad word found!')
-            initial_bad_word_flag = 1
-            break
-    if initial_bad_word_flag == 0:
-        if input_movie_name_words_list[-1] in years:
-            return 0
-        if input_movie_name_words_list[-1] in qualities:
-            return 0
+    # print(input_movie_name_words_list_comp)
+    # print(input_movie_name_words_list)  # to check for proper splitting
+    if input_movie_name_words_list == input_movie_name_words_list_comp:
+        for word in input_movie_name_words_list:
+            if word.upper() in bad_words:
+                print('bad word found!')
+                initial_bad_word_flag = 1
+                break
+        if initial_bad_word_flag == 0:
+            if input_movie_name_words_list[-1] in years:
+                return 0
+            if input_movie_name_words_list[-1] in qualities:
+                return 0
 
     for year in years:
         f = 0
