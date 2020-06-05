@@ -7,6 +7,7 @@ import pass_names_from_list
 
 def find_movies_in_dir(search_directory):  # search_directory is a string
     os.chdir(search_directory)
+    print(os.getcwd())
     directory = os.listdir(search_directory)
     # the path must exist and will be ensured before calling this function using path.exists()
     extensions = (

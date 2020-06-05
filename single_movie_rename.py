@@ -1,8 +1,8 @@
 import re
-import subprocess
+import subprocess  # for linux
+import os
 
 
-#
 def single_movie_rename(input_movie_name):  # input_movie_name is a string
     years = list(range(1950, 2051))
     years = list(map(str, years))  # convert the list elements to string elements for comparison later
@@ -44,8 +44,8 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
     input_movie_name_words_list_comp.pop()
 
     initial_bad_word_flag = 0
-    # print(input_movie_name_words_list_comp)
-    # print(input_movie_name_words_list)  # to check for proper splitting
+    print(input_movie_name_words_list_comp)
+    print(input_movie_name_words_list)  # to check for proper splitting
     if input_movie_name_words_list == input_movie_name_words_list_comp:
         for word in input_movie_name_words_list:
             if word.upper() in bad_words:
@@ -99,8 +99,13 @@ def single_movie_rename(input_movie_name):  # input_movie_name is a string
         input_movie_name_words_list.append(f'({quality})')
     final_movie_name = ' '.join(input_movie_name_words_list)
     final_movie_name = final_movie_name + "." + extension
-
-    subprocess.Popen(['mv', input_movie_name, final_movie_name])
+    # final_movie_name = f'\"{final_movie_name}\"'
+    # input_movie_name = f'\"{input_movie_name}\"'
+    print(input_movie_name)
+    print(final_movie_name)
+    print(os.getcwd())
+    os.rename(input_movie_name, final_movie_name)  # for Windows/Linux(?)
+    # subprocess.Popen(['rename', input_movie_name, final_movie_name])  # for Linux
     return 1
 
     # print(final_movie_name)

@@ -26,7 +26,9 @@ mainFolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentfram
 # Functions
 def okay_button_click(search_directory):
     if os.path.exists(search_directory):
+        print('yes path exists')
         find_movies_in_dir.find_movies_in_dir(search_directory)
+        print('chaning directory to write directory to directoryHistpry.txt')
         os.chdir(mainFolder)
         read_write.write_to_file(search_directory)
         # update_drop_down()
@@ -84,13 +86,13 @@ or_label = Label(frame2, text="OR", pady=10, bg='#e6ffe6')
 or_label.grid(row=0, column=0, columnspan=3, sticky='ew')
 
 # Select from these
-select_from_these = Label(frame2, text="Select from these:", width=20, anchor=W, background='#e6ffe6', pady=25)
+select_from_these = Label(frame2, text="Select from these:", width=15, anchor=W, background='#e6ffe6', pady=25)
 select_from_these.grid(row=1, column=0, sticky='w')
 
 # drop down menu
 history = read_write.read_files()
 if len(history) == 0:
-    read_write.write_to_file('/home/')
+    read_write.write_to_file(mainFolder)
     history = read_write.read_files()
 history.reverse()
 clicked = StringVar()
