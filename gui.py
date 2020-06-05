@@ -1,3 +1,4 @@
+import inspect
 import os
 from tkinter import *
 from tkinter import filedialog, messagebox
@@ -16,15 +17,17 @@ root.title('Organise Your Movies')
 # root.geometry("800x600")
 root.resizable(False, False)
 root.configure(background='#e6ffe6')
-img = ImageTk.PhotoImage(PIL.Image.open("/home/pratik/PycharmProjects/renameGUI/icons8.png"))
+img = ImageTk.PhotoImage(PIL.Image.open("icons8.png"))
 root.iconphoto(True, img)
+
+mainFolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 
 
 # Functions
 def okay_button_click(search_directory):
     if os.path.exists(search_directory):
-        os.chdir(search_directory)
         find_movies_in_dir.find_movies_in_dir(search_directory)
+        os.chdir(mainFolder)
         read_write.write_to_file(search_directory)
         # update_drop_down()
     else:
@@ -37,11 +40,6 @@ def explore():
     entry.delete(0, 'end')
     entry.insert(0, str(dir_name))
     # read_write.write_to_file(str(dir_name))
-
-
-# def drop_down_okay():
-#     search_directory = str(clicked.get())
-#     find_movies_in_dir.find_movies_in_dir(search_directory)
 
 
 # def update_drop_down():
