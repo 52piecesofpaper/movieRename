@@ -17,7 +17,7 @@ root.title('Organise Your Movies')
 # root.geometry("800x600")
 root.resizable(False, False)
 root.configure(background='#e6ffe6')
-img = ImageTk.PhotoImage(PIL.Image.open("icons8.png"))
+img = ImageTk.PhotoImage(PIL.Image.open("ReOrg.ico"))
 root.iconphoto(True, img)
 
 mainFolder = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
